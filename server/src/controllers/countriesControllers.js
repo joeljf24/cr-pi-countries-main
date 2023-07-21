@@ -1,23 +1,32 @@
 const { Country } = require('../db');
 
-const getAllCountries = async () => {
-    const countries = await Country.findAll();
-    return countries;
-};
-
-const getCountriesById = async (id) => {
-    const country = await Country.findByPk(id);
-    return country;
-};
-
-const getCountriesByName = async () => {
+const allCountries = async () => {
+    const allCountries = await Country.findAll();
     
+    if(!allCountries) {
+        throw Error ('Countries not avalaible');
+    }
+    else {
+        return allCountries;
+    }
 };
+
+// const getCountriesById = async (id) => {
+//     const country = await Country.findOne({
+//      where: { id }
+// });
+//     return country;
+// };
+
+// const getCountriesByName = async () => {
+//     const country = await Country.findOne({
+//      where: { name }
+// });
+//     return country;
+// };
 
 module.exports = {
-    getAllCountries,
-    getCountriesById,
-    getCountriesByName
+    allCountries,
 };
 
 /*

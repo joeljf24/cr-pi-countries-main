@@ -19,7 +19,6 @@ module.exports = (sequelize) => {
     },
     duration: {
       type: DataTypes.DATE,
-      allowNull: false,
     },
     season: {
       type: DataTypes.ENUM('Summer', 'Autumn', 'Winter', 'Spring'),

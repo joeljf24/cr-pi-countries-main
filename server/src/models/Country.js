@@ -17,21 +17,18 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    continents: {
+    continent: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     capital: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     subregion: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     area: {
       type: DataTypes.FLOAT,
-      allowNull: false,
     },
     population: {
       type: DataTypes.INTEGER,
