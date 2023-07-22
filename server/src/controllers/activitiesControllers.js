@@ -1,12 +1,15 @@
 const { Activity } = require('../db');
 
-const getAllActivities = async () => {
+const allActivities = async () => {
     const activities = await Activity.findAll();
+
+    if(!activities) throw Error ('There are no activities');
+
     return activities;
 };
 
 module.exports = {
-    getAllActivities
+    allActivities
 };
 
 /*
