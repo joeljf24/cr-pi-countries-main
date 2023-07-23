@@ -1,5 +1,6 @@
 const { allCountries, countryById, countryByName } = require('../controllers/countriesControllers');
 
+
 const getAllCountries = async (req, res) => {
     try {
         const countries = await allCountries();
@@ -14,7 +15,7 @@ const getCountryById = async (req, res) => {
 
     try {
         const country = await countryById(id);
-        res.status(200).json(countryById);
+        res.status(200).json(country);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }

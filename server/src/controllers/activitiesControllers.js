@@ -1,15 +1,50 @@
-const { Activity } = require('../db');
+const { Activity, Country } = require('../db');
 
-const allActivities = async () => {
-    const activities = await Activity.findAll();
 
-    if(!activities) throw Error ('There are no activities');
+const createActivity = async (name, difficulty, season, countries) => {
+    let arrayOfCountries = [];
 
-    return activities;
+    if(name && difficulty && season && countries) {
+        const activity = {
+            name,
+            difficulty,
+            season,
+            countries,
+        };
+
+        for (const country of countries) {
+            let addCountry = await Country.findOne({
+                where: {
+                    name: country,
+                }
+            })
+            arrayOfCountries.push(addCountry);
+        };
+
+        const newActivity = await Activity.create(activity);
+
+        await newActivity.addCountry(arrayOfCountries);
+
+        return newActivity;
+    }
+    else {
+        throw Error ("Cannot create a new activity. Some fields are missing.");
+    };
 };
 
+const allActivities = async () => {
+    
+    const activities = await Activity.findAll();
+    
+    if(activities.length === 0) throw Error ('There are no activities');
+    
+    return activities;    
+};   
+
+
 module.exports = {
-    allActivities
+    createActivity,
+    allActivities,
 };
 
 /*

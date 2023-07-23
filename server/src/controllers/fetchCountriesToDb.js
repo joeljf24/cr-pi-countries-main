@@ -2,13 +2,14 @@ const { Country } = require('../db');
 const axios = require('axios');
 const URL = 'http://localhost:5000/countries';
 
+
 const fetchCountries = async () => {
-    const { data } = await axios.get(URL)
+    const { data } = await axios.get(URL);
     await Promise.all(
         data.map(async (country) => {
             let { cca3, name, flags, continents, capital, subregion, area, population } = country;
 
-            if(!capital) capital = ['Unknown']
+            if(!capital) capital = ['Unknown'];
 
             await Country.create({
                 id: cca3,
@@ -19,12 +20,13 @@ const fetchCountries = async () => {
                 subregion,
                 area,
                 population,
-            });
+            })
         })
     );
     console.log('Countries uploaded to the database');
 };
 
+
 module.exports = {
-    fetchCountries
+    fetchCountries,
 };
