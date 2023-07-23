@@ -2,9 +2,12 @@ const { Activity, Country } = require('../db');
 
 
 const createActivity = async (name, difficulty, season, countries) => {
-    let arrayOfCountries = [];
-
-    if(name && difficulty && season && countries) {
+    if(!name && !difficulty && !season && !countries) {
+        throw Error ("Cannot create a new activity. Some fields are missing.");
+    }
+    else {
+        let arrayOfCountries = [];
+        
         const activity = {
             name,
             difficulty,
@@ -26,9 +29,6 @@ const createActivity = async (name, difficulty, season, countries) => {
         await newActivity.addCountry(arrayOfCountries);
 
         return newActivity;
-    }
-    else {
-        throw Error ("Cannot create a new activity. Some fields are missing.");
     };
 };
 
@@ -46,12 +46,3 @@ module.exports = {
     createActivity,
     allActivities,
 };
-
-/*
-📍 POST | /activities
-Esta ruta recibirá todos los datos necesarios para crear una actividad turística y relacionarla con los países solicitados.
-Toda la información debe ser recibida por body.
-Debe crear la actividad turística en la base de datos, y esta debe estar relacionada con los países indicados (al menos uno).
-📍 GET | /activities
-Obtiene un arreglo de objetos, donde cada objeto es una actividad turística.
-*/
