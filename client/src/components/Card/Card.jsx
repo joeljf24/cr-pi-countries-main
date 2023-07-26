@@ -1,11 +1,21 @@
 import { NavLink } from 'react-router-dom';
 import style from './Card.module.css'
 
-const Card = () => {
+const Card = ({ id, name, image, continent }) => {
 
    return (
       <div className={style.cardContainer}>
-            <h2>Esto es una Card</h2>
+         <NavLink to={`/detail/${id}`}>
+            {console.log('IDDDDDDD:::::::>', id)}
+            <div>
+               <img src={image} alt='' />
+            </div>
+
+            <div>
+               <h2>{name}</h2>
+               <h3>{continent}</h3>
+            </div>
+         </NavLink>
       </div>
    );
 }
