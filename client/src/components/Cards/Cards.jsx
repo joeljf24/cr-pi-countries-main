@@ -1,21 +1,18 @@
 import style from './Cards.module.css';
 import Card from '../Card/Card';
-import { useSelector } from 'react-redux';
 
-const Cards = () => {
-   const countries = useSelector(state => state.countries);
-   console.log('Countries--->', countries)
+const Cards = ({ currentCountries }) => {
    return (
       <div className={style.cardList}>
          {
-            countries.map((countries) => {
+            currentCountries.map((country) => {
                return(
                   <Card
-                  key={countries?.id}
-                  id={countries?.id}
-                  name={countries?.name}
-                  image={countries?.image}
-                  continent={countries?.continent}
+                  key={country?.id}
+                  id={country?.id}
+                  name={country?.name}
+                  image={country?.image}
+                  continent={country?.continent}
                   />
                )
             })

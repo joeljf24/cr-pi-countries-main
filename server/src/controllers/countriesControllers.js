@@ -3,8 +3,17 @@ const { Op } = require('sequelize');
 
 
 const allCountries = async () => {
-    const countries = await Country.findAll();
+    const countries = await Country.findAll({
+        include: {
+            model: Activity,
+            through: {
+                attributes: [],
+            }
+        }
+    });
 
+    countries.sort((a, b) => a.name.localeCompare(b.name));
+    
     if(!countries) throw Error ('The countries are not found in the database');
 
     return countries;
@@ -15,7 +24,6 @@ const countryById = async (id) => {
         where: { id },
         include: {
             model: Activity,
-            attributes: ['name', 'season', 'difficulty'],
             through: {
                 attributes: [],
             }

@@ -34,7 +34,14 @@ const createActivity = async (name, difficulty, season, countries) => {
 
 const allActivities = async () => {
     
-    const activities = await Activity.findAll();
+    const activities = await Activity.findAll({
+        include: {
+            model: Country,
+            through: {
+                attributes: [],
+            }
+        }
+    });
     
     if(activities.length === 0) throw Error ('There are no activities');
     

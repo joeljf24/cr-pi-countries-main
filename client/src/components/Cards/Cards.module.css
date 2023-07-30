@@ -1,5 +1,14 @@
+/* Cards.module.css */
+
 .cardList {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 100px;
-}
+    grid-template-columns: repeat(5, minmax(150px, 1fr)); /* Ajustar el ancho mínimo y máximo de las tarjetas */
+    grid-gap: 20px; /* Puedes ajustar este valor según tu preferencia */
+    justify-content: center; /* Centrar las tarjetas horizontalmente */
+    max-width: 1700px; /* Ajustar el ancho máximo del contenedor para evitar scroll */
+    margin: 0 auto; /* Centrar el contenedor en la pantalla */
+  }
+  
+  /* Estilos para las Cards */
+  /* ... (otros estilos si los tienes) */
+  

@@ -5,8 +5,7 @@ const Card = ({ id, name, image, continent }) => {
 
    return (
       <div className={style.cardContainer}>
-         <NavLink to={`/detail/${id}`}>
-            {console.log('IDDDDDDD:::::::>', id)}
+         <NavLink to={`/detail/${id}`} className={style.content}>
             <div>
                <img src={image} alt='' />
             </div>

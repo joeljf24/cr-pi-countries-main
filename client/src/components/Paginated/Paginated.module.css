@@ -1,0 +1,42 @@
+/* Paginated.module.css */
+
+.paginated {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+/* Utilizamos el prefijo de módulo para que los estilos solo afecten al componente Paginated */
+.paginated li {
+  margin: 0 5px;
+}
+
+/* Utilizamos el prefijo de módulo para que los estilos solo afecten al componente Paginated */
+.paginated button {
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #1e90ff; /* Color celeste claro */
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Utilizamos el prefijo de módulo para que los estilos solo afecten al componente Paginated */
+.paginated button:hover {
+  background-color: #007fff; /* Color celeste más oscuro al pasar el mouse */
+}
+
+/* Utilizamos el prefijo de módulo para que los estilos solo afecten al componente Paginated */
+.paginated button:disabled {
+  opacity: 0.5; /* Opacidad reducida para botones deshabilitados */
+  cursor: not-allowed;
+}
+
+/* Estilo para resaltar la página actual en color blanco */
+.paginated button.active {
+  background-color: #ffffff;
+  color: #1e90ff; /* Texto en color celeste claro */
+}
