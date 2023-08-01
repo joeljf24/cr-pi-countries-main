@@ -4,22 +4,14 @@
 .navContainer {
   /* Establecer el ancho al 100% para ocupar toda la pantalla */
   width: 100%;
-}
-
-.navBar {
   display: flex;
   justify-content: space-around;
   align-items: center;
   background-color: #1e3a58;
-  padding: 15px;
+  padding: 15px 0px;
 }
 
-.navBar div {
-  display: flex;
-  align-items: center;
-}
-
-.navBar button {
+.buttonNav {
   font-size: 16px;
   font-weight: bold;
   color: #fff;
@@ -32,9 +24,26 @@
   transition: background-color 0.3s, color 0.3s;
 }
 
-.navBar button:hover {
+.buttonNav:hover {
   background-color: #fff;
   color: #1e3a58;
 }
 
-/* Puedes añadir más estilos si es necesario */
+.buttonLogout {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 50px;
+  margin-right: 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.buttonLogout:hover {
+  background-color: red;
+  color: white;
+  border: 2px solid red;
+}

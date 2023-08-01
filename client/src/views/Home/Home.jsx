@@ -60,41 +60,72 @@ const Home = () => {
     setCurrentPage(1);
   };
 
+  const resetFilters = () => {
+    dispatch(setOrder("asc"));
+    dispatch(setFilterContinent(""));
+    dispatch(setFilterActivity(""));
+    setCurrentPage(1);
+  };
+
   return (
     <div>
       <div className={style.filterContainer}>
-        <select onChange={(event) => orderedCountriesHandler(event)}>
-          <option value="asc">Ascendant</option>
-          <option value="desc">Descendent</option>
-          <option value="higherPop">Higher Population</option>
-          <option value="lowerPop">Lower Population</option>
-        </select>
+        <div className={style.filter}>
+          <label htmlFor="sortSelect">Sort by: </label>
+          <select
+            id="sortSelect"
+            onChange={(event) => orderedCountriesHandler(event)}
+          >
+            <option value="asc">Ascendant</option>
+            <option value="desc">Descendent</option>
+            <option value="higherPop">Higher Population</option>
+            <option value="lowerPop">Lower Population</option>
+          </select>
+        </div>
 
-        <select onChange={(event) => filteredContinentHandler(event)}>
-          <option value="">All</option>
-          <option value="Africa">Africa</option>
-          <option value="Antarctica">Antarctica</option>
-          <option value="Asia">Asia</option>
-          <option value="Europe">Europe</option>
-          <option value="North America">North America</option>
-          <option value="Oceania">Oceania</option>
-          <option value="South America">South America</option>
-        </select>
+        <div className={style.filter}>
+          <label htmlFor="continentSelect">Filter by continent: </label>
+          <select
+            id="continentSelect"
+            onChange={(event) => filteredContinentHandler(event)}
+          >
+            <option value="">All</option>
+            <option value="Africa">Africa</option>
+            <option value="Antarctica">Antarctica</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="North America">North America</option>
+            <option value="Oceania">Oceania</option>
+            <option value="South America">South America</option>
+          </select>
+        </div>
 
-        <select onChange={(event) => filteredActivityHandler(event)}>
-          <option value="">Any</option>
-          {activities?.map((activity) => (
-            <option value={activity.name} key={activity.id}>
-              {activity.name}
-            </option>
-          ))}
-        </select>
+        <div className={style.filter}>
+          <label htmlFor="activitySelect">Filter by activity: </label>
+          <select
+            id="activitySelect"
+            onChange={(event) => filteredActivityHandler(event)}
+          >
+            <option value="">Any</option>
+            {activities?.map((activity) => (
+              <option value={activity.name} key={activity.id}>
+                {activity.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className={style.buttonFilter}>
+          <button className={style.resetButton} onClick={resetFilters}>
+            RESET FILTERS
+          </button>
+        </div>
       </div>
 
-      {currentCountries.length > 0 ? ( // Verificar si hay países para mostrar
+      {currentCountries.length > 0 ? (
         <Cards currentCountries={currentCountries} />
       ) : (
-        <p>
+        <p className={style.withOutCountries}>
           No countries were found with the specified filters or search terms.
         </p>
       )}

@@ -1,38 +1,35 @@
-/* SearchBar.module.css */
-.search-container {
-  background: #fff;
-  height: 30px;
-  border-radius: 30px;
-  padding: 10px 20px;
+.searchBar {
+  background: rgba(255, 255, 255, 0.2);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: 0.8s;
-  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3),
-    -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
-    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  border-radius: 60px;
+  backdrop-filter: blur(4px);
 }
 
-.search-container:hover > .search-input {
-  width: 200px; /* Ajusta el ancho deseado para la animación */
-}
-
-.search-input {
+.inputSearchBar {
+  width: 300px;
   background: transparent;
-  border: none;
+  padding: 0px 0px;
+  border: 0;
+  margin-left: 20px;
   outline: none;
-  width: 0px;
-  font-weight: 500;
-  font-size: 16px;
-  transition: 0.8s;
+  font-size: 20px;
+  color: #cac7ff;
+  transition: all 0.6s ease;
 }
 
-.search-container .search-btn .fas {
-  color: #5cbdbb;
+.buttonSearch {
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  cursor: pointer;
+  background: #1a324c;
 }
 
-.search-container:hover {
-  animation: hoverShake 0.15s linear 3;
+.buttonSearch:hover {
+  border: 3px solid white;
+  background: white;
+  transition: all 0.6s ease;
 }

@@ -50,14 +50,14 @@ const Paginated = ({ countriesPerPage, countries, paginated, currentPage }) => {
 
         {/* Botón para avanzar una página */}
         <li>
-          <button onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages}>
+          <button onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages || !countries}>
             &gt;
           </button>
         </li>
 
         {/* Botón para ir a la última página */}
         <li>
-          <button onClick={() => goToPage(totalPages)} disabled={currentPage === totalPages}>
+          <button onClick={() => goToPage(totalPages)} disabled={currentPage === totalPages || !countries}>
             &gt;&gt;
           </button>
         </li>

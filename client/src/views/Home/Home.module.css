@@ -1,22 +1,40 @@
-/* Home.module.css */
-
-/* Estilos para los filtros */
 .filterContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 20px;
-  }
-  
-  .filterContainer [data-filter="true"] {
-    font-size: 16px;
-    padding: 8px;
-    border: 2px solid #1E3A58;
-    border-radius: 5px;
-    background-color: #FFF;
-    color: #1E3A58;
-    cursor: pointer;
-  }
-  
-  /* Añadir más estilos según sea necesario */
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 10px;
+  border: 1px black;
+  border-radius: 5px;
+}
+
+.filter {
+  margin: 0px 10px;
+}
+
+.filter > label {
+  font-size: 14px;
+  color: #555;
+  margin-right: 5px;
+}
+
+.resetButton {
+  font-size: 14px;
+  padding: 5px 10px;
+  background-color: #1e3a58;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.resetButton:hover {
+  background-color: #1a324c;
+}
+
+.withOutCountries{
+  height: 730px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,22 +1,19 @@
-import style from './SearchBar.module.css';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import style from "./SearchBar.module.css";
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
 
   const onSearch = async (name) => {
     try {
-      const response = await axios.get(
-        'http://localhost:3001/countries/name',
-        {
-          params: {
-            name: name,
-          },
-        }
-      );
+      const response = await axios.get("http://localhost:3001/countries/name", {
+        params: {
+          name: name,
+        },
+      });
 
       const country = response.data[0]; // La respuesta es un array, tomamos el primer país encontrado
 
@@ -24,11 +21,11 @@ const SearchBar = () => {
         const id = country.id;
         navigate(`/detail/${id}`);
       } else {
-        alert('There are no countries with that name!');
+        alert("There are no countries with that name!");
       }
     } catch (error) {
       console.error(error);
-      alert('An error occurred while searching for the country.');
+      alert("An error occurred while searching for the country.");
     }
   };
 
@@ -38,27 +35,21 @@ const SearchBar = () => {
 
   const handleSearchClick = () => {
     onSearch(name);
-    setName('');
-  };
-
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      onSearch(name);
-      setName('');
-    }
+    setName("");
   };
 
   return (
-    <div className={`${style['search-container']} ${style['search-bar']}`}>
+    <div className={style.searchBar}>
       <input
-        className={style['search-input']}
-        placeholder='Search countries'
-        type='search'
+        className={style.inputSearchBar}
+        placeholder="Search countries"
+        type="search"
         onChange={handleChangeSearch}
-        onKeyPress={handleKeyPress}
         value={name}
       />
-      <button onClick={handleSearchClick}>🔍</button>
+      <button className={style.buttonSearch} onClick={handleSearchClick}>
+        🔍
+      </button>
     </div>
   );
 };

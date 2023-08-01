@@ -5,12 +5,12 @@ const Card = ({ id, name, image, continent }) => {
 
    return (
       <div className={style.cardContainer}>
-         <NavLink to={`/detail/${id}`} className={style.content}>
-            <div>
+         <NavLink to={`/detail/${id}`} className={style.link}>
+            <div className={style.cardImageContainer}>
                <img src={image} alt='' />
             </div>
 
-            <div>
+            <div className={style.cardTextContainer}>
                <h2>{name}</h2>
                <h3>{continent}</h3>
             </div>

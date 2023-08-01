@@ -10,7 +10,7 @@
 /* Form Content */
 .formContent {
   display: grid;
-  gap: 10px;
+  gap: 0px;
 }
 
 /* Form Title */
@@ -54,6 +54,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
+  margin-bottom: 15px;
 }
 
 /* Search Results Container */
@@ -86,12 +87,14 @@
 
 /* Selected Country */
 .selectedCountry {
-  background-color: #f0f0f0;
+  background-color: #1e3a58;
+  color: #fff;
   padding: 5px 10px;
   border-radius: 20px;
   display: flex;
   align-items: center;
 }
+
 
 /* Remove Country Button */
 .removeCountryButton {
@@ -118,6 +121,7 @@
   color: #fff;
   border: none;
   padding: 10px 20px;
+  margin: 15px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
