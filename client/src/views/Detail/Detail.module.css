@@ -1,4 +1,3 @@
-/* Detail.module.css */
 .container {
   margin: 20px;
   display: flex;
@@ -62,6 +61,31 @@
 
 .activityDetails {
   margin: 5px 0;
+}
+
+.buttonsContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.editButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.editButton:hover {
+  background-color: goldenrod;
 }
 
 .deleteButton {

@@ -1,5 +1,5 @@
-import style from './Cards.module.css';
-import Card from '../Card/Card';
+import style from "./Cards.module.css";
+import Card from "../Card/Card";
 
 const Cards = ({ currentCountries }) => {
    return (
@@ -20,6 +20,5 @@ const Cards = ({ currentCountries }) => {
       </div>
    )
 };
-
 
 export default Cards;

@@ -1,13 +1,13 @@
 .cardContainer {
   margin: 10px 0px;
-  backdrop-filter: blur(8px);
-  background-color: #1e3a58;
+  background: #1e3a58;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%; /* Cambiado a 100% para que las tarjetas ocupen todo el ancho disponible */
+  width: 100%; /* Para que las tarjetas ocupen todo el ancho que se pueda */
   max-height: 300px;
 
+  z-index: 0;
   border: 1px solid black;
   border-radius: 19px;
   box-shadow: 10px 8px 12px #0000008c;
@@ -20,7 +20,17 @@
 
 .cardContainer:hover {
   transform: scale(1.03);
-}
+  background: none;
+  backdrop-filter: blur(8px);
+  
+  .cardTextContainer > h2 {
+    color: black;
+  }
+
+  .cardTextContainer > h3 {
+    color: black;
+  }
+} 
 
 .cardImageContainer > img {
   margin-top: 20px;

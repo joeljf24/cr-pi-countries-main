@@ -38,17 +38,23 @@ export const combinedFilters = (order, continent, activity) => {
         } else if (order === "higherPop") {
           filterCountries.sort((a, b) => b.population - a.population);
         }
-      } else if (!order && continent && !activity) {
+      }
+      
+      else if (!order && continent && !activity) {
         // Filtrar por continente si se proporciona solo el parámetro 'continent'
         filterCountries = filterCountries.filter(
           (country) => country.continent === continent
         );
-      } else if (!order && !continent && activity) {
+      }
+      
+      else if (!order && !continent && activity) {
         // Filtrar por actividad si se proporciona solo el parámetro 'activity'
         filterCountries = filterCountries.filter((country) =>
           country.Activities.some((act) => act.name === activity)
         );
-      } else if (order && continent && !activity) {
+      }
+      
+      else if (order && continent && !activity) {
         // Filtrar por orden y continente si se proporcionan 'order' y 'continent'
         filterCountries = filterCountries.filter(
           (country) => country.continent === continent
@@ -62,7 +68,9 @@ export const combinedFilters = (order, continent, activity) => {
         } else if (order === "higherPop") {
           filterCountries.sort((a, b) => b.population - a.population);
         }
-      } else if (order && !continent && activity) {
+      }
+      
+      else if (order && !continent && activity) {
         // Filtrar por orden y actividad si se proporcionan 'order' y 'activity'
         filterCountries = filterCountries.filter((country) =>
           country.Activities.some((act) => act.name === activity)
@@ -76,7 +84,9 @@ export const combinedFilters = (order, continent, activity) => {
         } else if (order === "higherPop") {
           filterCountries.sort((a, b) => b.population - a.population);
         }
-      } else if (!order && continent && activity) {
+      }
+      
+      else if (!order && continent && activity) {
         // Filtrar por continente y actividad si se proporcionan 'continent' y 'activity'
         filterCountries = filterCountries.filter(
           (country) => country.continent === continent
@@ -84,7 +94,9 @@ export const combinedFilters = (order, continent, activity) => {
         filterCountries = filterCountries.filter((country) =>
           country.Activities.some((act) => act.name === activity)
         );
-      } else if (order && continent && activity) {
+      }
+      
+      else if (order && continent && activity) {
         // Filtrar por orden, continente y actividad si se proporcionan 'order', 'continent' y 'activity'
         filterCountries = filterCountries.filter(
           (country) => country.continent === continent
@@ -106,7 +118,6 @@ export const combinedFilters = (order, continent, activity) => {
       return dispatch({ type: COMBINED_FILTERS, payload: filterCountries });
     } catch (error) {
       console.error("Error fetching data:", error);
-      // Aquí puedes despachar una acción para manejar el error si es necesario
     }
   };
 };

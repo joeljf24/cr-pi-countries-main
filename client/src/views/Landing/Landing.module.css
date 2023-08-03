@@ -1,14 +1,19 @@
 .homeContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Lo centra verticalmente */
-  align-items: center; /* Lo centra horizontalmente */
-  min-height: 100vh; /* Se asegura que ocupe al menos el 100% del alto de la ventana */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .landingImage {
   width: 200px;
   height: auto;
+  transition: all 2.5s;
+}
+
+.expanded {
+  transform: scale(15); /* Expandimos la imagen cuando la clase "expanded" está presente */
 }
 
 .landingButton {

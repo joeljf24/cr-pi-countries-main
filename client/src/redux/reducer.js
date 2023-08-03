@@ -1,5 +1,6 @@
 import {
   GET_COUNTRIES,
+  GET_COUNTRIES_BY_ID,
   GET_ACTIVITIES,
   SET_ORDER,
   SET_FILTER_CONTINENT,
@@ -24,6 +25,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
         allCountries: payload,
         countries: payload,
       };
+
+    case GET_COUNTRIES_BY_ID:
+      return {
+        ...state,
+        countries: payload,
+      }
 
     case GET_ACTIVITIES:
       return {

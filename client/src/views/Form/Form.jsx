@@ -8,8 +8,9 @@ import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const dispatch = useDispatch();
-  const countries = useSelector((state) => state.countries);
   const navigate = useNavigate();
+  
+  const countries = useSelector((state) => state.countries);
 
   const [errors, setErrors] = useState({});
   const [activityData, setActivityData] = useState({
@@ -52,13 +53,12 @@ const Form = () => {
   };
 
   const handleAddCountry = (country) => {
-    // Verificar si el país ya está en la lista
     if (!activityData.countries.includes(country.name)) {
       setActivityData((prevData) => ({
         ...prevData,
         countrySearch: "",
         searchResults: [],
-        countries: [...prevData.countries, country.name], // Guarda solo el nombre del país
+        countries: [...prevData.countries, country.name],
       }));
     }
   };
@@ -70,26 +70,24 @@ const Form = () => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    axios
-      .post("http://localhost:3001/activities", activityData)
-      .then((res) => {
-        console.log("Response from server:", res.data);
-        alert("Activity created successfully!");
-        navigate("/home");
-      })
-      .catch((error) => {
-        console.error("Error creating activity:", error);
-        if (error.response) {
-          console.error("Error response from server:", error.response.data);
-        }
-        alert("Error creating activity. Please try again.");
-      });
+    const endpoint = "http://localhost:3001/activities"
+    try {
+      const res = await axios.post(endpoint, activityData);
+      console.log("Response from server:", res.data);
+      alert("Activity created successfully!");
+      navigate("/home");
+    } catch (error) {
+      console.error(`Error creating activity:" ${error}`);
+      if (error.response) {
+        alert(`Error response from server: ${error.response.data.error}`);
+      } else {
+      alert("Error creating activity. Please try again.");
+      }
+    }
   };
 
-  console.log("DATOS DE LA ACTIVIDAD", activityData);
-  console.log("ERROREEEEEEES", errors);
   return (
     <form onSubmit={handleSubmit} className={style.formContainer}>
       <div className={style.formContent}>
@@ -100,13 +98,8 @@ const Form = () => {
 
         <div>
           <label className={style.label}>Name: *</label>
-          <input
-            className={style.input}
-            type="text"
-            name="name"
-            value={activityData.name}
-            onChange={changeHandler}
-          />
+          <input className={style.input} type="text" name="name" placeholder="Give the activity name" value={activityData.name} onChange={changeHandler}/>
+
           {errors.name && <p className={style.error}>{errors.name}</p>}
           <hr className={style.separator} />
         </div>
@@ -114,122 +107,79 @@ const Form = () => {
         <div>
           <label className={style.label}>Countries: *</label>
           <div className={style.countrySearchContainer}>
-            <input
-              className={style.countrySearchInput}
-              type="text"
-              name="countries"
-              value={activityData.countrySearch}
-              onChange={handleCountrySearch}
-              placeholder="Search countries..."
-            />
-
+            <input className={style.countrySearchInput} type="text" name="countries" value={activityData.countrySearch} onChange={handleCountrySearch} placeholder="Search countries..."/>
             <div className={style.searchResults}>
-              {activityData.searchResults.map((country) => (
-                <div
-                  key={country.name}
-                  className={style.searchResultItem}
-                  onClick={() => handleAddCountry(country)}
-                >
-                  {country.name}
-                  {activityData.countries.includes(country.name) && (
-                    <span className={style.addedIndicator}>Added</span>
-                  )}
-                </div>
-              ))}
+              {
+                activityData.searchResults.map((country) => (
+                  <div key={country.name} className={style.searchResultItem} onClick={() => handleAddCountry(country)}>
+                    {country.name}
+                    {activityData.countries.includes(country.name) && (<span className={style.addedIndicator}>Added</span>)}
+                  </div>
+                ))
+              }
             </div>
+
+            {errors.countries && activityData.countries.length === 0 && <p className={style.error}>{errors.countries}</p>}
           </div>
 
           <div>
             <label className={style.label}>Difficulty: *</label>
-            <select
-              className={style.input}
-              type="number"
-              name="difficulty"
-              value={activityData.difficulty}
-              onChange={changeHandler}
-            >
-              <option value="" disabled>
-                Select difficulty
-              </option>
-              <option value="1">⭐ ✰ ✰ ✰ ✰</option>
+            <select className={style.input} type="number" name="difficulty" value={activityData.difficulty} onChange={changeHandler}>
+              <option value="">Select difficulty</option>
+              <option value="1">⭐ ✰ ✰ ✰ ✰  Easy</option>
               <option value="2">⭐⭐ ✰ ✰ ✰</option>
-              <option value="3">⭐⭐⭐ ✰ ✰</option>
+              <option value="3">⭐⭐⭐ ✰ ✰  Intermediate</option>
               <option value="4">⭐⭐⭐⭐ ✰</option>
-              <option value="5">⭐⭐⭐⭐⭐</option>
+              <option value="5">⭐⭐⭐⭐⭐  Hard</option>
             </select>
-            {errors.difficulty && (
-              <p className={style.error}>{errors.difficulty}</p>
-            )}
+
+            {errors.difficulty && <p className={style.error}>{errors.difficulty}</p>}
             <hr className={style.separator} />
           </div>
 
           <div>
-            <label className={style.label}>Duration: </label>
-            <input
-              className={style.input}
-              type="time"
-              name="duration"
-              value={activityData.duration}
-              onChange={changeHandler}
-            />
-            {errors.duration && (
-              <p className={style.error}>{errors.duration}</p>
-            )}
+            <label className={style.label}>Duration: *</label>
+            <input className={style.input} type="time" name="duration" value={activityData.duration} onChange={changeHandler}/>
+
+            {errors.duration && <p className={style.error}>{errors.duration}</p>}
             <hr className={style.separator} />
           </div>
 
           <div>
             <label className={style.label}>Season: *</label>
-            <select
-              className={style.input}
-              name="season"
-              value={activityData.season}
-              onChange={changeHandler}
-            >
-              <option value="" disabled>
-                Select season
-              </option>
+            <select className={style.input} name="season" value={activityData.season} onChange={changeHandler}>
+              <option value="">Select season</option>
               <option value="Summer">Summer</option>
               <option value="Autumn">Autumn</option>
               <option value="Winter">Winter</option>
               <option value="Spring">Spring</option>
             </select>
+
             {errors.season && <p className={style.error}>{errors.season}</p>}
             <hr className={style.separator} />
           </div>
 
-          {errors.countries && activityData.countries.length === 0 && (
-            <p className={style.error}>{errors.countries}</p>
-          )}
-
           <div className={style.selectedCountries}>
-            {activityData.countries.map((country) => (
-              <div key={country} className={style.selectedCountry}>
-                <span>{country}</span>
-                <button
-                  type="button"
-                  className={style.removeCountryButton}
-                  onClick={() => handleRemoveCountry(country)}
-                >
-                  X
-                </button>
-              </div>
-            ))}
+            {
+              activityData.countries.map((country) => (
+                <div key={country} className={style.selectedCountry}>
+                  <span>{country}</span>
+                  <button type="button" className={style.removeCountryButton} onClick={() => handleRemoveCountry(country)}>
+                    X
+                  </button>
+                </div>
+              ))
+            }
           </div>
           <hr className={style.separator} />
           <div>
-            {activityData.name &&
-            activityData.difficulty &&
-            activityData.season &&
-            activityData.countries.length > 0 &&
-            Object.keys(errors).length === 0 ? (
-              <button className={style.button}>CREATE ACTIVITY</button>
-            ) : (
-              <button className={style.button} disabled>
-                COMPLETE ALL FIELDS FIRST
-              </button>
-            )}
+            {
+              activityData.name && activityData.difficulty && activityData.season && activityData.countries.length > 0 && Object.keys(errors).length === 0 
+              ? ( <button className={style.button}>CREATE ACTIVITY</button> )
+              : ( <button className={style.button} disabled>COMPLETE ALL FIELDS FIRST</button>)
+            }
           </div>
+
         </div>
       </div>
     </form>

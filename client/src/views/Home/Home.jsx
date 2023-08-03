@@ -45,17 +45,17 @@ const Home = () => {
     else dispatch(getCountries());
   }, [order, filterContinent, filterActivity]);
 
-  const orderedCountriesHandler = (event) => {
+  const handleOrderedCountries = (event) => {
     dispatch(setOrder(event.target.value));
     setCurrentPage(1);
   };
 
-  const filteredContinentHandler = (event) => {
+  const handleFilteredContinent = (event) => {
     dispatch(setFilterContinent(event.target.value));
     setCurrentPage(1);
   };
 
-  const filteredActivityHandler = (event) => {
+  const handleFilteredActivity = (event) => {
     dispatch(setFilterActivity(event.target.value));
     setCurrentPage(1);
   };
@@ -64,6 +64,9 @@ const Home = () => {
     dispatch(setOrder("asc"));
     dispatch(setFilterContinent(""));
     dispatch(setFilterActivity(""));
+    document.getElementById("sortSelect").value = 'asc';
+    document.getElementById("continentSelect").value = "";
+    document.getElementById("activitySelect").value = "";
     setCurrentPage(1);
   };
 
@@ -74,7 +77,7 @@ const Home = () => {
           <label htmlFor="sortSelect">Sort by: </label>
           <select
             id="sortSelect"
-            onChange={(event) => orderedCountriesHandler(event)}
+            onChange={(event) => handleOrderedCountries(event)}
           >
             <option value="asc">Ascendant</option>
             <option value="desc">Descendent</option>
@@ -87,7 +90,7 @@ const Home = () => {
           <label htmlFor="continentSelect">Filter by continent: </label>
           <select
             id="continentSelect"
-            onChange={(event) => filteredContinentHandler(event)}
+            onChange={(event) => handleFilteredContinent(event)}
           >
             <option value="">All</option>
             <option value="Africa">Africa</option>
@@ -104,7 +107,7 @@ const Home = () => {
           <label htmlFor="activitySelect">Filter by activity: </label>
           <select
             id="activitySelect"
-            onChange={(event) => filteredActivityHandler(event)}
+            onChange={(event) => handleFilteredActivity(event)}
           >
             <option value="">Any</option>
             {activities?.map((activity) => (
@@ -122,13 +125,12 @@ const Home = () => {
         </div>
       </div>
 
-      {currentCountries.length > 0 ? (
-        <Cards currentCountries={currentCountries} />
-      ) : (
-        <p className={style.withOutCountries}>
-          No countries were found with the specified filters or search terms.
-        </p>
-      )}
+      {
+      currentCountries.length > 0
+      ? <Cards currentCountries={currentCountries} />
+      : <p className={style.withOutCountries}>No countries were found with the specified filters or search terms.</p>
+      }
+      
       <Paginated
         countriesPerPage={countriesPerPage}
         countries={countries.length}

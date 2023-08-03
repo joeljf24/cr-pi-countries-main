@@ -5,6 +5,9 @@ const URL = 'http://localhost:5000/countries';
 
 const fetchCountries = async () => {
     const { data } = await axios.get(URL);
+    if (await Country.count() > 0) {   
+        return;
+    }
     await Promise.all(
         data.map(async (country) => {
             let { cca3, name, flags, continents, capital, subregion, area, population } = country;

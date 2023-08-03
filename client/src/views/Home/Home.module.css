@@ -33,6 +33,7 @@
 }
 
 .withOutCountries{
+  font-size: 30px;
   height: 730px;
   display: flex;
   justify-content: center;

@@ -1,8 +1,5 @@
-/* Nav.module.css */
 
-/* Prefijo para limitar el alcance de los estilos al componente Nav */
 .navContainer {
-  /* Establecer el ancho al 100% para ocupar toda la pantalla */
   width: 100%;
   display: flex;
   justify-content: space-around;
