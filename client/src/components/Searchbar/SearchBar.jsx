@@ -31,7 +31,7 @@ const SearchBar = () => {
 
   const onSearch = async (name) => {
     try {
-      const response = await axios.get("https://server-yqou.onrender.com//countries/name", {
+      const response = await axios.get("https://server-yqou.onrender.com/countries/name", {
         params: {
           name: name,
         },

@@ -72,7 +72,7 @@ const Form = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const endpoint = "https://server-yqou.onrender.com//activities"
+    const endpoint = "https://server-yqou.onrender.com/activities"
     try {
       const res = await axios.post(endpoint, activityData);
       console.log("Response from server:", res.data);
