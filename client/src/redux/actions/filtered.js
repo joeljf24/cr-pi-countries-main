@@ -19,7 +19,7 @@ export const setFilterActivity = (activity) => {
 };
 
 export const combinedFilters = (order, continent, activity) => {
-  const endpoint = "http://localhost:3001/countries";
+  const endpoint = "http://https://server-yqou.onrender.com/countries";
 
   return async (dispatch) => {
     try {
