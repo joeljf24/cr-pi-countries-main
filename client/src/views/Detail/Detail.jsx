@@ -9,7 +9,7 @@ const Detail = () => {
     const [countries, setCountries] = useState({});
   
     useEffect(() => {
-      axios(`http://https://server-yqou.onrender.com/countries/${id}`).then(({ data }) => {
+      axios(`https://server-yqou.onrender.com//countries/${id}`).then(({ data }) => {
         if (data.id) {
           setCountries(data);
         } else {
@@ -21,7 +21,7 @@ const Detail = () => {
 
     const deleteCountryFromActivity = async (activityId, countryId) => {
       try {
-        await axios.delete(`http://https://server-yqou.onrender.com/activities/${activityId}/countries/${countryId}`);
+        await axios.delete(`https://server-yqou.onrender.com//activities/${activityId}/countries/${countryId}`);
         // Si la solicitud se completa correctamente, puedes actualizar la lista de actividades en el estado local, si es necesario.
         // Por ejemplo, puedes volver a cargar la información del país para reflejar los cambios después de la eliminación.
         // Puedes hacer otra solicitud para obtener el detalle actualizado del país.
