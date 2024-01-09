@@ -6,7 +6,7 @@ import {
 import axios from "axios";
 
 export const getCountries = () => {
-    const endpoint = "http://localhost:3001/countries";
+    const endpoint = "https://server-yqou.onrender.com/countries";
 
     return async (dispatch) => {
         try {
@@ -25,7 +25,7 @@ export const getCountries = () => {
 };
 
 export const getCountriesByName = (name) => {
-    const endpoint = "http://localhost:3001/countries/name"
+    const endpoint = "https://server-yqou.onrender.com/countries/name"
 
     return async (dispatch) => {
         try {
@@ -45,7 +45,7 @@ export const getCountriesByName = (name) => {
 };
 
 export const getActivities = () => {
-    const endpoint = "http://localhost:3001/activities";
+    const endpoint = "https://server-yqou.onrender.com/activities";
 
     return async (dispatch) => {
         try {
